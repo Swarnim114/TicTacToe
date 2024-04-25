@@ -1,39 +1,48 @@
 package org.example.models;
 
 public class Cell {
-    private Integer row;
-    private Integer column;
+    private int row;
+    private int col;
     private Player player;
-    private cellState state;
-    private enum cellState {
-        EMPTY,
-        FILLED
+    private CellState cellState;
+    //getter and setter
+
+    public void setRow(int row) {
+        this.row = row;
     }
 
-
-    public Cell(Integer row, Integer column) {
-        this.row = row;
-        this.column = column;
-        this.player = null;
+    public void setCol(int col) {
+        this.col = col;
     }
 
     public void setPlayer(Player player) {
         this.player = player;
     }
 
+    public void setCellState(CellState cellState) {
+        this.cellState = cellState;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
     public Player getPlayer() {
-        return this.player;
+        return player;
     }
 
-    public Integer getRow() {
-        return this.row;
+    public CellState getCellState() {
+        return cellState;
     }
 
-    public Integer getColumn() {
-        return this.column;
-    }
-
-    public Boolean isEmpty() {
-        return this.state == cellState.EMPTY;
+    //constructor
+    public Cell(int row, int col) {
+        this.row = row;
+        this.col = col;
+        this.cellState=CellState.EMPTY;
     }
 }

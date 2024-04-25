@@ -1,20 +1,24 @@
 package org.example.models;
 
+import java.util.List;
+
 public class Bot extends Player {
-    private enum BotDifficultyLevel {
-        EASY,
-        MEDIUM,
-        HARD
+    private BoitDifficultyLevel boitDifficultyLevel;
+
+    public Bot(String name, Symbol symbol, PlayerType playerType, BoitDifficultyLevel boitDifficultyLevel) {
+        super(name, symbol, playerType);
+        this.boitDifficultyLevel = boitDifficultyLevel;
     }
-    private BotDifficultyLevel botDifficultyLevel;
-    private BotDifficultyLevel getBotDifficultyLevel() {
-        return this.botDifficultyLevel;
-    }
-    private void setBotDifficultyLevel(BotDifficultyLevel botDifficultyLevel) {
-        this.botDifficultyLevel = botDifficultyLevel;
-    }
-    public Bot(String name, Symbol symbol, BotDifficultyLevel botDifficultyLevel) {
-        super(name, symbol);
-        this.botDifficultyLevel = botDifficultyLevel;
+
+    @Override
+    public Move makeMove(Board board) {
+        for (List<Cell> row : board.getBoard()) {
+            for (Cell cell : row) {
+                if (cell.getCellState().equals(CellState.EMPTY)) {
+                    return new Move(cell, this);
+                }
+            }
+        }
+        return null;
     }
 }
